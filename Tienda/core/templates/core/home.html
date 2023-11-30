@@ -1,0 +1,321 @@
+
+{% extends 'core/index.html' %}
+{% load static %}
+{% block nav %}
+<div class="row">
+    <div class="col-sm-12 text-left menu-1">
+        <ul>
+            <li class="active"><a href="home">Home</a></li>
+            <li class="has-dropdown">
+            </li>
+            <li><a href="{% url 'catalogo' %}">Productos</a></li>
+            {% if request.user.is_authenticated %}
+            <li><a href="{% url 'Public' %}">Publicar</a></li>
+            <li class="nav-item" style="background-color: brown;">
+              <a href= "{% url 'logout' %}">Salir</a></li>
+            {% else %}
+            <li class="nav-item" style="background-color: brown;">
+                <a href= "{% url 'registrar_user' %}">Registrar</a></li>
+            <li class="nav-item" style="background-color: brown;">
+                <a href= "{% url 'login_user' %}">Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock%}
+
+{% block content %}
+
+
+<div class="colorlib-intro">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="colorlib-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
+                <h2>Lo Mas Vendidos</h2>
+            </div>
+        </div>
+        <div class="row row-pb-md">
+            <div class="col-lg-3 mb-4 text-center">
+                <div class="product-entry border">
+                    <a href="#" class="prod-img">
+                        <img src="{% static 'images/ps4.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    </a>
+                    <div class="desc">
+                        <h2><a href="#">Ps4 pro 1tb</a></h2>
+                        <span class="price">$344.000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-4 text-center">
+                <div class="product-entry border">
+                    <a href="#" class="prod-img">
+                        <img src="{% static 'images/camara.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    </a>
+                    <div class="desc">
+                        <h2><a href="#">Camara canon</a></h2>
+                        <span class="price">$570.000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-4 text-center">
+                <div class="product-entry border">
+                    <a href="#" class="prod-img">
+                        <img src="{% static 'images/perfume1.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    </a>
+                    <div class="desc">
+                        <h2><a href="#">Perfume Versace Eros Flame</a></h2>
+                        <span class="price">$100.000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-4 text-center">
+                <div class="product-entry border">
+                    <a href="#" class="prod-img">
+                        <img src="{% static 'images/s20.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    </a>
+                    <div class="desc">
+                        <h2><a href="#">Samsung 20+</a></h2>
+                        <span class="price">$339.000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-lg-3 mb-4 text-center">
+                <div class="product-entry border">
+                    <a href="#" class="prod-img">
+                        <img src="{% static 'images/item-5.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    </a>
+                    <div class="desc">
+                        <h2><a href="#">Women's Boots Shoes Maca</a></h2>
+                        <span class="price">$45.000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-4 text-center">
+                <div class="product-entry border">
+                    <a href="#" class="prod-img">
+                        <img src="{% static 'images/cosmeticos.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    </a>
+                    <div class="desc">
+                        <h2><a href="#">Kit cosmeticos</a></h2>
+                        <span class="price">$25.000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-4 text-center">
+                <div class="product-entry border">
+                    <a href="#" class="prod-img">
+                        <img src="{% static 'images/cepillos.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    </a>
+                    <div class="desc">
+                        <h2><a href="#">Cepillo de dientes bambú</a></h2>
+                        <span class="price">$6.990</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-4 text-center">
+                <div class="product-entry border">
+                    <a href="#" class="prod-img">
+                        <img src="{% static 'images/j1.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    </a>
+                    <div class="desc">
+                        <h2><a href="#">Air Jordan 1 X Off-White NRG</a></h2>
+                        <span class="price">$155.000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-lg-3 mb-4 text-center">
+                <div class="product-entry border">
+                    <a href="#" class="prod-img">
+                        <img src="{% static 'images/item-9.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    </a>
+                    <div class="desc">
+                        <h2><a href="#">Botas hombre</a></h2>
+                        <span class="price">$139.000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-4 text-center">
+                <div class="product-entry border">
+                    <a href="#" class="prod-img">
+                        <img src="{% static 'images/j2.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    </a>
+                    <div class="desc">
+                        <h2><a href="#">Poleron Jordan </a></h2>
+                        <span class="price">$120.000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-4 text-center">
+                <div class="product-entry border">
+                    <a href="#" class="prod-img">
+                        <img src="{% static 'images/item-11.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    </a>
+                    <div class="desc">
+                        <h2><a href="#">Sapatillas Nike X Jordan 1</a></h2>
+                        <span class="price">$125.000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-4 text-center">
+                <div class="product-entry border">
+                    <a href="#" class="prod-img">
+                        <img src="{% static 'images/adidas.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    </a>
+                    <div class="desc">
+                        <h2><a href="#">Adidas Yeezy Boost 350</a></h2>
+                        <span class="price">$220.000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-lg-3 mb-4 text-center">
+                <div class="product-entry border">
+                    <a href="#" class="prod-img">
+                        <img src="{% static 'images/bici.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    </a>
+                    <div class="desc">
+                        <h2><a href="#">Bicicleta ROAD CARBON RD1 - GREEN</a></h2>
+                        <span class="price">$990.000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-4 text-center">
+                <div class="product-entry border">
+                    <a href="#" class="prod-img">
+                        <img src="{% static 'images/perfumes2.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    </a>
+                    <div class="desc">
+                        <h2><a href="#">Perfumes emperiatice</a></h2>
+                        <span class="price">$45.000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-4 text-center">
+                <div class="product-entry border">
+                    <a href="#" class="prod-img">
+                        <img src="{% static 'images/item-15.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    </a>
+                    <div class="desc">
+                        <h2><a href="#">Nike Air More Uptempo 96</a></h2>
+                        <span class="price">$139.000</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 mb-4 text-center">
+                <div class="product-entry border">
+                    <a href="#" class="prod-img">
+                        <img src="{% static 'images/jbl2.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
+                    </a>
+                    <div class="desc">
+                        <h2><a href="#">audifonos JBL Tune 520BT</a></h2>
+                        <span class="price">$34.000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <p><a href="#" class="btn btn-primary btn-lg">  All Products</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="colorlib-product">
+    <div class="container">
+        <div class="row">
+            <!-- ... (contenido existente) ... -->
+        </div>
+
+        <!-- Agrega la paginación aquí -->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              {% if news.has_previous %}
+                <li class="page-item">
+                  <a class="page-link" href="?page=1" aria-label="Primera">
+                    <span aria-hidden="true">Primera</span>
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ news.previous_page_number }}" aria-label="Anterior">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                  <span class="page-link" aria-hidden="true">Primera</span>
+                </li>
+                <li class="page-item disabled">
+                  <span class="page-link" aria-hidden="true">&laquo;</span>
+                </li>
+              {% endif %}
+          
+              {% for i in news.paginator.page_range %}
+                <li class="page-item{% if news.number == i %} active{% endif %}">
+                  <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                </li>
+              {% endfor %}
+          
+              {% if news.has_next %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ news.next_page_number }}" aria-label="Siguiente">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ news.paginator.num_pages }}" aria-label="Ultima">
+                    <span aria-hidden="true">Ultima</span>
+                  </a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                  <span class="page-link" aria-hidden="true">&raquo;</span>
+                </li>
+                <li class="page-item disabled">
+                  <span class="page-link" aria-hidden="true">Ultima</span>
+                </li>
+              {% endif %}
+            </ul>
+          </nav>
+
+<div class="colorlib-partner">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
+                <h2>Trusted Partners</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col partner-col text-center">
+                <img src="{% static 'images/brand-1.jpg' %}" class="img-fluid" alt="Free html4 bootstrap 4 template">
+            </div>
+            <div class="col partner-col text-center">
+                <img src="{% static 'images/brand-2.jpg' %}" class="img-fluid" alt="Free html4 bootstrap 4 template">
+            </div>
+            <div class="col partner-col text-center">
+                <img src="{% static 'images/brand-3.jpg' %}" class="img-fluid" alt="Free html4 bootstrap 4 template">
+            </div>
+            <div class="col partner-col text-center">
+                <img src="{% static 'images/brand-4.jpg' %}" class="img-fluid" alt="Free html4 bootstrap 4 template">
+            </div>
+            <div class="col partner-col text-center">
+                <img src="{% static 'images/brand-5.jpg' %}" class="img-fluid" alt="Free html4 bootstrap 4 template">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

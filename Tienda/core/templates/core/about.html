@@ -1,0 +1,102 @@
+{% extends 'core/index.html' %}
+{% load static %}
+
+{% block nav %}
+<div class="row">
+  <div class="col-sm-12 text-left menu-1">
+    <ul>
+      <li><a href="home">Home</a></li>
+      <li class="has-dropdown">
+      </li>
+      <li><a href="{% url 'catalogo' %}">Productos</a></li>
+      {% if request.user.is_authenticated %}
+      <li class="active"><a href="{% url 'Public' %}">Publicar</a></li>
+      <li class="nav-item" style="background-color: brown;">
+        <a href= "{% url 'logout' %}">Salir</a></li>
+      {% else %}
+      <li class="nav-item" style="background-color: brown;">
+        <a href= "{% url 'registrar_user' %}">Registrar</a></li>
+      <li class="nav-item" style="background-color: brown;">
+        <a href= "{% url 'login_user' %}">Login</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endblock%}
+
+
+{% block content %}
+<a href="categoria" class="btn btn-primary" style="display: block;">Crear</a>
+<div class="container text-center">
+    <div class="row">
+    {% for n in news %}
+        <div class="col-md-6 col-12">
+            <div class="card my-2" style="width: 18rem;">
+                {% if n.imgend %}
+                    <img class="card-img-top" src="{{n.imgend.url}}" alt="Card image cap">
+                {% endif %}
+                <div class="card-body">
+                <h5 class="card-title">{{ n.Nombrez }}</h5>
+                <p class="card-text"> {{n.catego }}</p>
+                <p class="card-text">$ {{n.precioz }}</p>
+                <a href="{% url 'editar' n.id  %}" class="btn btn-primary">Editar</a>
+                <a href="{% url 'borr' n.id %}" class="btn btn-primary" style="background-color: red;"> Eliminar </a>
+                </div>
+            </div>
+        </div>   
+        
+    {% endfor %}
+    </div>
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      {% if news.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page=1" aria-label="Primera">
+            <span aria-hidden="true">Primera</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="?page={{ news.previous_page_number }}" aria-label="Anterior">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link" aria-hidden="true">Primera</span>
+        </li>
+        <li class="page-item disabled">
+          <span class="page-link" aria-hidden="true">&laquo;</span>
+        </li>
+      {% endif %}
+  
+      {% for i in news.paginator.page_range %}
+        <li class="page-item{% if news.number == i %} active{% endif %}">
+          <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+        </li>
+      {% endfor %}
+  
+      {% if news.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ news.next_page_number }}" aria-label="Siguiente">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="?page={{ news.paginator.num_pages }}" aria-label="Ultima">
+            <span aria-hidden="true">Ultima</span>
+          </a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <span class="page-link" aria-hidden="true">&raquo;</span>
+        </li>
+        <li class="page-item disabled">
+          <span class="page-link" aria-hidden="true">Ultima</span>
+        </li>
+      {% endif %}
+    </ul>
+  </nav>
+
+{% endblock %}
