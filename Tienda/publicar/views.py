@@ -21,9 +21,9 @@ def buscar(request, n):
 
 def busqueda(request):
     if request.method == "POST":
-        buscado = request.POST['buscado']
-        producto = Producto.objects.filter(Nombrez__contains=buscado)
-        return render(request, 'core/busqueda.html', {'buscado':buscado, 'producto':producto})
+        Buscado = request.POST['buscado']
+        producto = Producto.objects.filter(Nombrez__contains=Buscado)
+        return render(request, 'core/busqueda.html', {'buscado':Buscado, 'producto':producto})
     else:
         return render(request, 'core/busqueda.html', {})
 
@@ -62,13 +62,18 @@ def publicar(request):
 
 @login_required
 def crear(request):
+    submitted=False
     if request.method == 'POST':
-        maq_form = articleform(request.POST, request.FILES)
-        if maq_form.is_valid():
-            maq_form.save()
-            return redirect('about.html')
+            maq_form = admprodform(request.POST,request.FILES)
+            if maq_form.is_valid():
+                produc= maq_form.save(commit=False)
+                produc.vende = request.user
+                produc.save()
+                return redirect('about.html')
     else:
-        maq_form= articleform()
+        maq_form= admprodform()
+        if 'submitted' in request.GET:
+            submitted = True
     return render(request,"fu/categoria.html",{'maq_form':maq_form})
 
 

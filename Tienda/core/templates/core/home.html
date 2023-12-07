@@ -1,321 +1,378 @@
 
 {% extends 'core/index.html' %}
 {% load static %}
+
 {% block nav %}
-<div class="row">
-    <div class="col-sm-12 text-left menu-1">
-        <ul>
-            <li class="active"><a href="home">Home</a></li>
-            <li class="has-dropdown">
-            </li>
-            <li><a href="{% url 'catalogo' %}">Productos</a></li>
-            {% if request.user.is_authenticated %}
-            <li><a href="{% url 'Public' %}">Publicar</a></li>
-            <li class="nav-item" style="background-color: brown;">
-              <a href= "{% url 'logout' %}">Salir</a></li>
-            {% else %}
-            <li class="nav-item" style="background-color: brown;">
-                <a href= "{% url 'registrar_user' %}">Registrar</a></li>
-            <li class="nav-item" style="background-color: brown;">
-                <a href= "{% url 'login_user' %}">Login</a></li>
-            {% endif %}
-        </ul>
-    </div>
+<div class="collapse navbar-collapse" id="navbar-menu">
+    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+        <li class="nav-item active"><a class="nav-link" href="/home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'catalogo' %}">Tienda</a></li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'Public' %}">Mis Productos</a></li>
+        <li class="nav-item"><a class="nav-link" href= "{% url 'logout' %}">Salir</a></li>
+        {% else %}
+        <li class="nav-item"><a class="nav-link" href= "{% url 'registrar_user' %}">Registrar</a></li>
+        {% endif %}
+        <!-- <li class="nav-item"><a class="nav-link" href="gallery.html">Usuario</a></li> -->
+    </ul>
 </div>
-{% endblock%}
+{% endblock %}
 
 {% block content %}
+ <!-- Start Slider -->
+ <div id="slides-shop" class="cover-slides">
+    <ul class="slides-container">
+        <li class="text-center">
+            <img src="{% static 'images/arcilla.jpg' %}" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20"><strong>Bienvenido a<br> E-mprender</strong></h1>
+                        <p class="m-b-40">Una pagina creada sin fines de lucro <br> Dando visibilidad a los emprendedores.</p>
+                        <p><a class="btn hvr-hover" href="{% url 'catalogo' %}">Productos</a></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="text-center">
+            <img src="{% static 'images/carpin.jpg' %}" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20"><strong>Bienvenido a<br> E-mprender</strong></h1>
+                        <p class="m-b-40">Una pagina creada sin fines de lucro <br> Dando visibilidad a los emprendedores.</p>
+                        <p><a class="btn hvr-hover" href="{% url 'catalogo' %}">Productos</a></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="text-center">
+            <img src="{% static 'images/teg.jpg' %}" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20"><strong>Bienvenido a<br> E-mprender</strong></h1>
+                        <p class="m-b-40">Una pagina creada sin fines de lucro <br> Dando visibilidad a los emprendedores.</p>
+                        <p><a class="btn hvr-hover" href="{% url 'catalogo' %}">Productos</a></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="slides-navigation">
+        <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+    </div>
+</div>
+<!-- End Slider -->
 
-
-<div class="colorlib-intro">
+<!-- Start Categories  -->
+<div class="categories-shop">
     <div class="container">
         <div class="row">
-            <div class="col-sm-12 text-center">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="shop-cat-box">
+                    <img class="img-fluid" style="width: 316px;align-items: center;" src="{% static 'images/rop.jpg' %}" alt="" />
+                    <a class="btn hvr-hover" href="#">Muebles</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="shop-cat-box">
+                    <img class="img-fluid" src="{% static 'images/cerami.jpg' %}" alt="" />
+                    <a class="btn hvr-hover" href="#">Ceramica</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="shop-cat-box">
+                    <img class="img-fluid" src="{% static 'images/tazas.jpg' %}" alt="" />
+                    <a class="btn hvr-hover" href="#">Tazas</a>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<!-- End Categories -->
 
 
-<div class="colorlib-product">
+<!-- Start Products  -->
+<div class="products-box">
     <div class="container">
         <div class="row">
-            <div class="col-sm-8 offset-sm-2 text-center colorlib-heading">
-                <h2>Lo Mas Vendidos</h2>
-            </div>
-        </div>
-        <div class="row row-pb-md">
-            <div class="col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="{% static 'images/ps4.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Ps4 pro 1tb</a></h2>
-                        <span class="price">$344.000</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="{% static 'images/camara.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Camara canon</a></h2>
-                        <span class="price">$570.000</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="{% static 'images/perfume1.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Perfume Versace Eros Flame</a></h2>
-                        <span class="price">$100.000</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="{% static 'images/s20.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Samsung 20+</a></h2>
-                        <span class="price">$339.000</span>
-                    </div>
-                </div>
-            </div>
-            <div class="w-100"></div>
-            <div class="col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="{% static 'images/item-5.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Women's Boots Shoes Maca</a></h2>
-                        <span class="price">$45.000</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="{% static 'images/cosmeticos.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Kit cosmeticos</a></h2>
-                        <span class="price">$25.000</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="{% static 'images/cepillos.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Cepillo de dientes bambú</a></h2>
-                        <span class="price">$6.990</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="{% static 'images/j1.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Air Jordan 1 X Off-White NRG</a></h2>
-                        <span class="price">$155.000</span>
-                    </div>
-                </div>
-            </div>
-            <div class="w-100"></div>
-            <div class="col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="{% static 'images/item-9.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Botas hombre</a></h2>
-                        <span class="price">$139.000</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="{% static 'images/j2.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Poleron Jordan </a></h2>
-                        <span class="price">$120.000</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="{% static 'images/item-11.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Sapatillas Nike X Jordan 1</a></h2>
-                        <span class="price">$125.000</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="{% static 'images/adidas.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Adidas Yeezy Boost 350</a></h2>
-                        <span class="price">$220.000</span>
-                    </div>
-                </div>
-            </div>
-            <div class="w-100"></div>
-            <div class="col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="{% static 'images/bici.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Bicicleta ROAD CARBON RD1 - GREEN</a></h2>
-                        <span class="price">$990.000</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="{% static 'images/perfumes2.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Perfumes emperiatice</a></h2>
-                        <span class="price">$45.000</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="{% static 'images/item-15.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">Nike Air More Uptempo 96</a></h2>
-                        <span class="price">$139.000</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 mb-4 text-center">
-                <div class="product-entry border">
-                    <a href="#" class="prod-img">
-                        <img src="{% static 'images/jbl2.jpg' %}" class="img-fluid" alt="Free html5 bootstrap 4 template">
-                    </a>
-                    <div class="desc">
-                        <h2><a href="#">audifonos JBL Tune 520BT</a></h2>
-                        <span class="price">$34.000</span>
-                    </div>
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>Calzado</h1>
+                    <p>Productos Preferidos</p>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 text-center">
-                <p><a href="#" class="btn btn-primary btn-lg">  All Products</a></p>
+            <div class="col-lg-12">
+                <div class="special-menu text-center">
+                    <div class="button-group filter-button-group">
+                        <button class="active" data-filter="*">All</button>
+                        <button data-filter=".top-featured">Top featured</button>
+                        <button data-filter=".best-seller">Best seller</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row special-list">
+            <div class="col-lg-3 col-md-6 special-grid best-seller">
+                <div class="products-single fix">
+                    <div class="box-img-hover">
+                        <div class="type-lb">
+                            <p class="sale">Sale</p>
+                        </div>
+                        <img src="{% static 'images/item-4.jpg' %}" class="img-fluid" alt="Image">
+                        <div class="mask-icon">
+                            <ul>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                            </ul>
+                            <a class="cart" href="#">Add to Cart</a>
+                        </div>
+                    </div>
+                    <div class="why-text">
+                        <h4>Zapato deportivo</h4>
+                        <h5> 22500 CLP</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 special-grid top-featured">
+                <div class="products-single fix">
+                    <div class="box-img-hover">
+                        <div class="type-lb">
+                            <p class="new">New</p>
+                        </div>
+                        <img src="{% static 'images/item-7.jpg' %}" class="img-fluid" alt="Image">
+                        <div class="mask-icon">
+                            <ul>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                            </ul>
+                            <a class="cart" href="#">Add to Cart</a>
+                        </div>
+                    </div>
+                    <div class="why-text">
+                        <h4>Zapato</h4>
+                        <h5> 26500 CLP</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 special-grid top-featured">
+                <div class="products-single fix">
+                    <div class="box-img-hover">
+                        <div class="type-lb">
+                            <p class="sale">Sale</p>
+                        </div>
+                        <img src="{% static 'images/item-6.jpg' %}" class="img-fluid" alt="Image">
+                        <div class="mask-icon">
+                            <ul>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                            </ul>
+                            <a class="cart" href="#">Add to Cart</a>
+                        </div>
+                    </div>
+                    <div class="why-text">
+                        <h4>Zapato deportivo</h4>
+                        <h5> 12200 CLP</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 special-grid best-seller">
+                <div class="products-single fix">
+                    <div class="box-img-hover">
+                        <div class="type-lb">
+                            <p class="sale">Sale</p>
+                        </div>
+                        <img src="{% static 'images/item-5.jpg' %}" class="img-fluid" alt="Image">
+                        <div class="mask-icon">
+                            <ul>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                            </ul>
+                            <a class="cart" href="#">Add to Cart</a>
+                        </div>
+                    </div>
+                    <div class="why-text">
+                        <h4>Tacones</h4>
+                        <h5> 25555 CLP</h5>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<!-- End Products  -->
 
-<div class="colorlib-product">
+<!-- Start Blog  -->
+<!-- <div class="latest-blog">
     <div class="container">
         <div class="row">
-            <!-- ... (contenido existente) ... -->
-        </div>
-
-        <!-- Agrega la paginación aquí -->
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-              {% if news.has_previous %}
-                <li class="page-item">
-                  <a class="page-link" href="?page=1" aria-label="Primera">
-                    <span aria-hidden="true">Primera</span>
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="?page={{ news.previous_page_number }}" aria-label="Anterior">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-              {% else %}
-                <li class="page-item disabled">
-                  <span class="page-link" aria-hidden="true">Primera</span>
-                </li>
-                <li class="page-item disabled">
-                  <span class="page-link" aria-hidden="true">&laquo;</span>
-                </li>
-              {% endif %}
-          
-              {% for i in news.paginator.page_range %}
-                <li class="page-item{% if news.number == i %} active{% endif %}">
-                  <a class="page-link" href="?page={{ i }}">{{ i }}</a>
-                </li>
-              {% endfor %}
-          
-              {% if news.has_next %}
-                <li class="page-item">
-                  <a class="page-link" href="?page={{ news.next_page_number }}" aria-label="Siguiente">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-                <li class="page-item">
-                  <a class="page-link" href="?page={{ news.paginator.num_pages }}" aria-label="Ultima">
-                    <span aria-hidden="true">Ultima</span>
-                  </a>
-                </li>
-              {% else %}
-                <li class="page-item disabled">
-                  <span class="page-link" aria-hidden="true">&raquo;</span>
-                </li>
-                <li class="page-item disabled">
-                  <span class="page-link" aria-hidden="true">Ultima</span>
-                </li>
-              {% endif %}
-            </ul>
-          </nav>
-
-<div class="colorlib-partner">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8 offset-sm-2 text-center colorlib-heading colorlib-heading-sm">
-                <h2>Trusted Partners</h2>
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>latest blog</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet lacus enim.</p>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col partner-col text-center">
-                <img src="{% static 'images/brand-1.jpg' %}" class="img-fluid" alt="Free html4 bootstrap 4 template">
+            <div class="col-md-6 col-lg-4 col-xl-4">
+                <div class="blog-box">
+                    <div class="blog-img">
+                        <img class="img-fluid" src="images/blog-img.jpg" alt="" />
+                    </div>
+                    <div class="blog-content">
+                        <div class="title-blog">
+                            <h3>Fusce in augue non nisi fringilla</h3>
+                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
+                        </div>
+                        <ul class="option-blog">
+                            <li><a href="#"><i class="far fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fas fa-eye"></i></a></li>
+                            <li><a href="#"><i class="far fa-comments"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="col partner-col text-center">
-                <img src="{% static 'images/brand-2.jpg' %}" class="img-fluid" alt="Free html4 bootstrap 4 template">
+            <div class="col-md-6 col-lg-4 col-xl-4">
+                <div class="blog-box">
+                    <div class="blog-img">
+                        <img class="img-fluid" src="images/blog-img-01.jpg" alt="" />
+                    </div>
+                    <div class="blog-content">
+                        <div class="title-blog">
+                            <h3>Fusce in augue non nisi fringilla</h3>
+                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
+                        </div>
+                        <ul class="option-blog">
+                            <li><a href="#"><i class="far fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fas fa-eye"></i></a></li>
+                            <li><a href="#"><i class="far fa-comments"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="col partner-col text-center">
-                <img src="{% static 'images/brand-3.jpg' %}" class="img-fluid" alt="Free html4 bootstrap 4 template">
-            </div>
-            <div class="col partner-col text-center">
-                <img src="{% static 'images/brand-4.jpg' %}" class="img-fluid" alt="Free html4 bootstrap 4 template">
-            </div>
-            <div class="col partner-col text-center">
-                <img src="{% static 'images/brand-5.jpg' %}" class="img-fluid" alt="Free html4 bootstrap 4 template">
+            <div class="col-md-6 col-lg-4 col-xl-4">
+                <div class="blog-box">
+                    <div class="blog-img">
+                        <img class="img-fluid" src="images/blog-img-02.jpg" alt="" />
+                    </div>
+                    <div class="blog-content">
+                        <div class="title-blog">
+                            <h3>Fusce in augue non nisi fringilla</h3>
+                            <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
+                        </div>
+                        <ul class="option-blog">
+                            <li><a href="#"><i class="far fa-heart"></i></a></li>
+                            <li><a href="#"><i class="fas fa-eye"></i></a></li>
+                            <li><a href="#"><i class="far fa-comments"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+End Blog  -->
 
+
+<!-- Start Instagram Feed  -->
+<div class="instagram-box">
+    <div class="main-instagram owl-carousel owl-theme">
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/instagram-img-01.jpg" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/instagram-img-02.jpg" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/instagram-img-03.jpg" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/instagram-img-04.jpg" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/instagram-img-05.jpg" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/instagram-img-06.jpg" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/instagram-img-07.jpg" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/instagram-img-08.jpg" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/instagram-img-09.jpg" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="ins-inner-box">
+                <img src="images/instagram-img-05.jpg" alt="" />
+                <div class="hov-in">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Instagram Feed  -->
 
 {% endblock %}
+
+

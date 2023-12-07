@@ -25,8 +25,6 @@ class Categoria(models.Model):
         return self.Nombrec
 
 
-    # gene=models.CharField(choices=gen, null=True, blank=True, max_length=15)
-
 
 
 class Producto(models.Model):

@@ -6,12 +6,11 @@
 <link rel="stylesheet" href="{% static 'lib/css/mdb.min.css.map' %}">
 <link rel="stylesheet" href="{% static 'lib/css/mdb.rtl.min.css' %}">
 
-<section class="vh-100" style="background-color: #1d1f22;">
+<section class="vh-100" >
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-          <div class="card shadow-2-strong" style="border-radius: 1rem;">
-            <div class="card-body p-5 text-center">
+
               {% if form.errors %}
     
               <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -20,16 +19,17 @@
               </div>
 
 
-           
               {% endif %}
               <h3 class="mb-5">Registrar Cuenta de Usuario</h3>
               
-
+              
               <form action="" method="POST">
                {% csrf_token %}
                 
-               {{ form}}
-               <button class="btn btn-primary btn-lg btn-block" type="submit">Registrar</button>
+               {{ form.as_p}}
+               <button class="btn btn-primary btn-lg " style="background-color: black;" type="submit">Registrar</button>
+               
+               <a href= "{% url 'login_user' %}" style="color: blue;">Ya tienes cuenta? Pues Inicia Sesion</a></li>
             </form>
             </div>
           </div>

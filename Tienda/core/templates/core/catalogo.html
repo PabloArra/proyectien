@@ -1,89 +1,154 @@
 {% extends 'core/index.html' %}
-{% load static %}
 
 {% block nav %}
-<div class="row">
-  <div class="col-sm-12 text-left menu-1">
-    <ul>
-      <li><a href="home">Home</a></li>
-      <li class="has-dropdown">
-      </li>
-      <li class="active"><a href="{% url 'catalogo' %}">Productos</a></li>
-      {% if request.user.is_authenticated %}
-      <li><a href="{% url 'Public' %}">Publicar</a></li>
-      <li class="nav-item" style="background-color: brown;">
-        <a href= "{% url 'logout' %}">Salir</a></li>
-      {% else %}
-      <li class="nav-item" style="background-color: brown;">
-        <a href= "{% url 'registrar_user' %}">Registrar</a></li>
-      <li class="nav-item" style="background-color: brown;">
-        <a href= "{% url 'login_user' %}">Login</a></li>
-      {% endif %}
+<div class="collapse navbar-collapse" id="navbar-menu">
+    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+        <li class="nav-item active"><a class="nav-link" href="/home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'catalogo' %}">Tienda</a></li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'Public' %}">Mis Productos</a></li>
+        <li class="nav-item"><a class="nav-link" href= "{% url 'logout' %}">Salir</a></li>
+        {% else %}
+        <li class="nav-item"><a class="nav-link" href= "{% url 'registrar_user' %}">Registrar</a></li>
+        {% endif %}
+        <!-- <li class="nav-item"><a class="nav-link" href="gallery.html">Usuario</a></li> -->
     </ul>
-  </div>
 </div>
-{% endblock%}
+{% endblock %}
+
+
 
 {% block content %}
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-<link rel="stylesheet" href="{% static 'css/er.css' %}">
+    <!-- Start Shop Page  -->
+    <div class="shop-box-inner">
+      <div class="container">
+          <div class="row">
+              <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+                  <div class="right-product-box">
+                      <div class="product-item-filter row">
+                          <div class="col-12 col-sm-8 text-center text-sm-left">
+                              <div class="toolbar-sorter-right">
+                                  <span>Sort by </span>
+                                  <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+                                <option data-display="Select">Nothing</option>
+                                <option value="1">Popularity</option>
+                                <option value="2">High Price → High Price</option>
+                                <option value="3">Low Price → High Price</option>
+                                <option value="4">Best Selling</option>
+                              </select>
+                              </div>
+                              <p>Showing all 4 results</p>
+                          </div>
+                          <div class="col-12 col-sm-4 text-center text-sm-right">
+                              <ul class="nav nav-tabs ml-auto">
+                                  <li>
+                                      <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
+                                  </li>
+                                  <li>
+                                      <a class="nav-link" href="#list-view" data-toggle="tab"> <i class="fa fa-list-ul"></i> </a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
 
-{% for n in news %}
-<div class="container mt-5 mb-5">
-  <div class="d-flex justify-content-center row">
-      <div class="col-md-10">
-          <div class="row p-2 bg-white border rounded">
-              <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="{{n.imgend.url}}"></div>
-              <div class="col-md-6 mt-1">
-                  <h5>{{ n.Nombrez }}</h5>
-                  <div class="d-flex flex-row">
-                      <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
+                      <div class="product-categorie-box">
+                          <div class="tab-content">
+                              <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                                  <div class="row">
+                                    {% for n in news %}
+                                      <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                          <div class="products-single fix">
+                                              <div class="box-img-hover">
+                                                  <div class="type-lb">
+                                                      <p class="sale">Sale</p>
+                                                  </div>
+                                                  <img src="{{n.imgend.url}}" class="img-fluid" alt="Image">
+                                                  <div class="mask-icon">
+                                                      <ul>
+                                                          <li><a href="{% url 'buscar' n.id %}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                          <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                                          <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                      </ul>
+                                                      <a class="cart" href="#">Add to Cart</a>
+                                                  </div>
+                                              </div>
+                                              <div class="why-text">
+                                                  <h4>{{ n.Nombrez }}</h4>
+                                                  <h5> {{n.precioz }} CLP</h5>
+                                              </div>
+                                          </div>
+                                      </div>
+                                      {% endfor %}
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
                   </div>
-                  <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span></div>
-                  <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
-                  <p class="text-justify text-truncate para mb-0"><span>Descripcion: </span>{{n.descrip }}<br><br></p>
               </div>
-              <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                  <div class="d-flex flex-row align-items-center">
-                      <h4 class="mr-1">{{n.precioz }} CLP</h4><span class="strike-text"></span>
+      <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
+                  <div class="product-categori">
+                      <div class="search-product">
+                          <form method="post" action="{% url 'busqueda' %}">
+                            {% csrf_token %}
+                              <input class="form-control" placeholder="Buscar" type="search" name="buscado">
+                              <button type="submit"> <i class="fa fa-search"></i> </button>
+                          </form>
+                      </div>
+                      <div class="filter-sidebar-left">
+                          <div class="title-left">
+                              <h3>Categories</h3>
+                          </div>
+                          <div class="list-group list-group-collapse list-group-sm list-group-tree" id="list-group-men" data-children=".sub-men">
+                              <div class="list-group-collapse sub-men">
+                                  <a class="list-group-item list-group-item-action" href="#sub-men1" data-toggle="collapse" aria-expanded="true" aria-controls="sub-men1">Fruits & Drinks <small class="text-muted">(100)</small>
+              </a>
+                                  <div class="collapse show" id="sub-men1" data-parent="#list-group-men">
+                                      <div class="list-group">
+                                          <a href="#" class="list-group-item list-group-item-action active">Fruits 1 <small class="text-muted">(50)</small></a>
+                                          <a href="#" class="list-group-item list-group-item-action">Fruits 2 <small class="text-muted">(10)</small></a>
+                                          <a href="#" class="list-group-item list-group-item-action">Fruits 3 <small class="text-muted">(10)</small></a>
+                                          <a href="#" class="list-group-item list-group-item-action">Fruits 4 <small class="text-muted">(10)</small></a>
+                                          <a href="#" class="list-group-item list-group-item-action">Fruits 5 <small class="text-muted">(20)</small></a>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="list-group-collapse sub-men">
+                                  <a class="list-group-item list-group-item-action" href="#sub-men2" data-toggle="collapse" aria-expanded="false" aria-controls="sub-men2">Vegetables 
+              <small class="text-muted">(50)</small>
+              </a>
+                                  <div class="collapse" id="sub-men2" data-parent="#list-group-men">
+                                      <div class="list-group">
+                                          <a href="#" class="list-group-item list-group-item-action">Vegetables 1 <small class="text-muted">(10)</small></a>
+                                          <a href="#" class="list-group-item list-group-item-action">Vegetables 2 <small class="text-muted">(20)</small></a>
+                                          <a href="#" class="list-group-item list-group-item-action">Vegetables 3 <small class="text-muted">(20)</small></a>
+                                      </div>
+                                  </div>
+                              </div>
+                              <a href="#" class="list-group-item list-group-item-action"> Grocery  <small class="text-muted">(150) </small></a>
+                              <a href="#" class="list-group-item list-group-item-action"> Grocery <small class="text-muted">(11)</small></a>
+                              <a href="#" class="list-group-item list-group-item-action"> Grocery <small class="text-muted">(22)</small></a>
+                          </div>
+                      </div>
+                      <div class="filter-price-left">
+                          <div class="title-left">
+                              <h3>Price</h3>
+                          </div>
+                          <div class="price-box-slider">
+                              <div id="slider-range"></div>
+                              <p>
+                                  <input type="text" id="amount" readonly style="border:0; color:#fbb714; font-weight:bold;">
+                                  <button class="btn hvr-hover" type="submit">Filter</button>
+                              </p>
+                          </div>
+                      </div>
                   </div>
-                  <div class="d-flex flex-column mt-4"><a href="{% url 'buscar' n.id %}" class="btn btn-primary btn-sm">Ver Producto</a></div>
               </div>
           </div>
-          
       </div>
   </div>
-</div>
-{% endfor %}
-
-<!-- <div class="container text-center">
-    <div class="row">
-    {% for n in news %}
-
-     <div class="col-md-6 col-12">
-        <div class="card my-2" style="width: 18rem;">
-            {% if n.imgend %}
-            <img class="card-img-top" src="{{n.imgend.url}}" alt="Card image cap">
-            {% endif %}
-            <div class="card-body">
-            <h5 class="card-title">{{ n.Nombrez }}</h5>
-            <p class="card-text"> {{n.catego }}</p>
-			      <p class="card-text">$ {{n.precioz }}</p>
-            <a href="{% url 'buscar' n.id %}" class="btn btn-primary">Ver Producto</a>
-            </div>
-        </div>
-     </div>   
-    
-
-    {% endfor %}
-    </div>
-</div> -->
-
-<nav aria-label="Page navigation example">
+  <!-- End Shop Page -->
+  <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
       {% if news.has_previous %}
         <li class="page-item">
@@ -132,5 +197,4 @@
       {% endif %}
     </ul>
   </nav>
-
 {% endblock %}

@@ -2,50 +2,107 @@
 {% load static %}
 
 {% block nav %}
-<div class="row">
-  <div class="col-sm-12 text-left menu-1">
-    <ul>
-      <li><a href="home">Home</a></li>
-      <li class="has-dropdown">
-      </li>
-      <li><a href="{% url 'catalogo' %}">Productos</a></li>
-      {% if request.user.is_authenticated %}
-      <li class="active"><a href="{% url 'Public' %}">Publicar</a></li>
-      <li class="nav-item" style="background-color: brown;">
-        <a href= "{% url 'logout' %}">Salir</a></li>
-      {% else %}
-      <li class="nav-item" style="background-color: brown;">
-        <a href= "{% url 'registrar_user' %}">Registrar</a></li>
-      <li class="nav-item" style="background-color: brown;">
-        <a href= "{% url 'login_user' %}">Login</a></li>
-      {% endif %}
+<div class="collapse navbar-collapse" id="navbar-menu">
+    <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+        <li class="nav-item active"><a class="nav-link" href="/home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'catalogo' %}">Tienda</a></li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'Public' %}">Mis Productos</a></li>
+        <li class="nav-item"><a class="nav-link" href= "{% url 'logout' %}">Salir</a></li>
+        {% else %}
+        <li class="nav-item"><a class="nav-link" href= "{% url 'registrar_user' %}">Registrar</a></li>
+        {% endif %}
+        <!-- <li class="nav-item"><a class="nav-link" href="gallery.html">Usuario</a></li> -->
     </ul>
-  </div>
 </div>
-{% endblock%}
+{% endblock %}
+
 
 
 {% block content %}
-<a href="categoria" class="btn btn-primary" style="display: block;">Crear</a>
-<div class="container text-center">
+
+<div class="shop-box-inner">
+  <div class="container">
     <div class="row">
-    {% for n in news %}
-        <div class="col-md-6 col-12">
-            <div class="card my-2" style="width: 18rem;">
-                {% if n.imgend %}
-                    <img class="card-img-top" src="{{n.imgend.url}}" alt="Card image cap">
-                {% endif %}
-                <div class="card-body">
-                <h5 class="card-title">{{ n.Nombrez }}</h5>
-                <p class="card-text"> {{n.catego }}</p>
-                <p class="card-text">$ {{n.precioz }}</p>
-                <a href="{% url 'editar' n.id  %}" class="btn btn-primary">Editar</a>
-                <a href="{% url 'borr' n.id %}" class="btn btn-primary" style="background-color: red;"> Eliminar </a>
+      <div class="col-lg-12">
+          <div class="special-menu text-center">
+            
+                      <a href="categoria" class="btn hvr-hover" style="display: block;">Crear</a>
+              
+          </div>
+      </div>
+    </div>
+      <div class="row">
+          <div class="col-xl-9 col-lg-9 col-sm-12 col-xs-12 shop-content-right">
+              <div class="right-product-box">
+                  <!-- <div class="product-item-filter row">
+                      <div class="col-12 col-sm-8 text-center text-sm-left">
+                          <div class="toolbar-sorter-right">
+                              <span>Sort by </span>
+                              <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
+                            <option data-display="Select">Nothing</option>
+                            <option value="1">Popularity</option>
+                            <option value="2">High Price → High Price</option>
+                            <option value="3">Low Price → High Price</option>
+                            <option value="4">Best Selling</option>
+                          </select>
+                          </div>
+                          <p>Showing all 4 results</p>
+                      </div>
+                      <div class="col-12 col-sm-4 text-center text-sm-right">
+                          <ul class="nav nav-tabs ml-auto">
+                              <li>
+                                  <a class="nav-link active" href="#grid-view" data-toggle="tab"> <i class="fa fa-th"></i> </a>
+                              </li>
+                              <li>
+                                  <a class="nav-link" href="#list-view" data-toggle="tab"> <i class="fa fa-list-ul"></i> </a>
+                              </li>
+                          </ul>
+                      </div>
+                  </div> -->
+
+                  <div class="product-categorie-box">
+                      <div class="tab-content">
+                          <div role="tabpanel" class="tab-pane fade show active" id="grid-view">
+                              <div class="row">
+                                {% for n in news %}
+                                  <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                                      <div class="products-single fix">
+                                          <div class="box-img-hover">
+                                              <div class="type-lb">
+                                                  <p class="sale">Sale</p>
+                                              </div>
+                                              <img src="{{n.imgend.url}}" class="img-fluid" alt="Image">
+                                              <div class="mask-icon">
+                                                  <ul>
+                                                      <li><a href="{% url 'buscar' n.id %}" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
+                                                      <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
+                                                      <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                                  </ul>
+                                                  <a class="cart" href="#">Add to Cart</a>
+                                              </div>
+                                          </div>
+                                          <div class="why-text">
+                                              <h4>{{ n.Nombrez }}</h4>
+                                              <h5> {{n.precioz }} CLP</h5>
+                                
+                                          </div>
+                                          <a href="{% url 'editar' n.id  %}" class="btn btn-primary">Editar</a>
+                                          <a href="{% url 'borr' n.id %}" class="btn btn-primary" style="background-color: red;"> Eliminar </a>
+                                      </div>
+                                  </div>
+                                  {% endfor %}
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+    
                 </div>
             </div>
         </div>   
         
-    {% endfor %}
     </div>
 </div>
 

@@ -23,7 +23,7 @@ def login_user(request):
 
 def registrar_user(request):
         if request.method == "POST":
-             form = UserCreationForm(request.POST)
+             form = RegisterUserForm(request.POST)
              if form.is_valid():
                   form.save()
                   username = form.cleaned_data['username']
@@ -33,7 +33,7 @@ def registrar_user(request):
                   messages.success(request, ("Registro Completado"))
                   return redirect('Inicio')
         else:
-            form = UserCreationForm()
+            form = RegisterUserForm()
 
         return render(request, 'authenticate/registrar_usuario.html', {'form':form,})
 
@@ -41,19 +41,3 @@ def logout_user(request):
     logout(request)
     return redirect('Inicio')
 
-
-# def registrar_user(request):
-#         if request.method == "POST":
-#              form = RegisterUserForm(request.POST)
-#              if form.is_valid():
-#                   form.save()
-#                   username = form.cleaned_data['username']
-#                   password = form.cleaned_data['password1']
-#                   user = authenticate(username=username, password=password)
-#                   login(request, user)
-#                   messages.success(request, ("Registro Completado"))
-#                   return redirect('Inicio')
-#         else:
-#             form = RegisterUserForm()
-
-#         return render(request, 'authenticate/registrar_usuario.html', {'form':form,})
